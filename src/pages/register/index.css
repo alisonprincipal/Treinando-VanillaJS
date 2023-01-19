@@ -12,7 +12,7 @@
     background-color: #ffffff;
 
 
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .cabecalho>nav{
     display: flex;
@@ -47,6 +47,113 @@
 #btnCss:hover{
     color: #FFFFFF;
     background: #4200FF;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../assets/imgBack.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 10px;
+
+    
+}
+.formRegister{
+    width: 100%;
+    max-width:506px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 25px;
+}
+.formRegister>div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+   
+}
+.formRegister>div>h2{
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 60px;
+    color: #000000;
+}
+.formRegister>input{
+    width: 100%;
+    height: 52px;
+
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+
+    padding-left: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.formRegister>select{
+    width: 100%;
+    height: 52px;
+
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+
+    
+    padding-left: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    background-color: #FFFFFF;
+
+    border-radius: 5px;
+}
+.opt{
+    color: blue;
+}
+.formRegister>button{
+    width: 100%;
+    height: 52px;
+    background: #4200FF;
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+
+}
+.formRegister>a{
+    width: 100%;
+    height: 52px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #4200FF;
+
+    border: 1px solid #4200FF;
+   
+}
+.formRegister>button:hover{
+    background-color:  #2f1085;
+}
+.formRegister>a:hover{
+    background-color: #c9c3c3;
 }
 
 @media(min-width:620px){
