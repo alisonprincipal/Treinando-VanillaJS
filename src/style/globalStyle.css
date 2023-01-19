@@ -36,6 +36,9 @@
     border-radius: 5px;
    }
    input:focus{
-      border: 1px solid rgb(25, 25, 199);
+      box-shadow: 0 0 0 0;
+      outline: 0;
+
+      border: 1px solid rgb(38, 0, 255);
    }
  
