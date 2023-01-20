@@ -1,0 +1,60 @@
+#containerMensagem{
+    position: fixed;
+    width: 441.73px;
+    height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    gap: 30px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 1px 1px;
+    animation: florentina 3000ms ease-in forwards;
+
+   
+}
+@keyframes florentina{
+    0%{right: 30px; bottom: -100px;}
+    25%{right: 30px; bottom: 10px;}
+    50%{right: 30px; bottom: 10px;}
+    100%{right: 30px; bottom: -150px;}
+}
+#containerMensagem>div{
+   display: flex;
+   gap: 20px;
+   align-items: center;
+}
+#containerMensagem>div>img{
+    width: 40px;
+}
+#containerMensagem>h3{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+}
+#containerMensagem>p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+}
+.sucesso{
+    background-color: rgba(0, 128, 0, 0.836);
+    color: #e8eeed;
+}
+.errorrr{
+    background-color:  rgb(236, 29, 29);
+    color:  #e8eeed;
+}
+@media(max-width:500px){
+    #containerMensagem{
+        width: 95%;
+    }
+    @keyframes florentina{
+        0%{ left: 10px; bottom: -100px;}
+        25%{left: 10px;  bottom: 10px;}
+        50%{left: 10px;  bottom: 10px;}
+        100%{left: 10px;  bottom: -150px;}
+    }
+
+}
