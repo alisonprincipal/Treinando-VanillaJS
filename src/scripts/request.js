@@ -58,3 +58,17 @@ export const requestPermission= async(token)=>{
     console.log(error)
    }
 }
+export const requestRegistro= async(data)=>{
+    const estrutura = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    }
+
+    const request = await fetch(`${baseUrl}auth/register`,estrutura)
+    const requestJson = await request.json()
+    console.log(request)
+   console.log(requestJson)
+}
