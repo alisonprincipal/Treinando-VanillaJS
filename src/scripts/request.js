@@ -1,6 +1,9 @@
 import { sucessoAndErro } from "./toastify.js"
 const baseUrl ='http://localhost:6278/'
 
+const token = localStorage.getItem('@token')
+
+
 export const allSetores = async()=>{
     const request = await fetch(`${baseUrl}sectors`)
     const requestJson = await request.json()
@@ -28,6 +31,8 @@ export const requestLogin= async(data)=>{
 
     const request = await fetch(`${baseUrl}auth/login`,estrutura)
     const requestJson = await request.json()
+
+    
     
     if(request.ok){
         localStorage.setItem('@token',requestJson.token)
@@ -88,3 +93,61 @@ export const requestRegistro= async(data)=>{
     }
    
 }
+
+export const requestInfoUser = async ()=>{
+    
+try{
+    const estrutura ={
+        method:'GET',
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+      }
+      const request = await fetch(`${baseUrl}users/profile`,estrutura)
+      const requestJson = await request.json()
+    
+      return requestJson
+
+}catch(error){
+    console.log(error)
+}
+}
+export const requestDepartamentInfo = async ()=>{
+    
+    try{
+        const estrutura ={
+            method:'GET',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+          }
+          const request = await fetch(`${baseUrl}users/departments`,estrutura)
+          const requestJson = await request.json()
+        
+          return requestJson
+          
+    }catch(error){
+        console.log(error)
+    }
+ }
+export const requestCompanyInfo = async ()=>{
+    
+    try{
+        const estrutura ={
+            method:'GET',
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+          }
+          const request = await fetch(`${baseUrl}users/departments/coworkers`,estrutura)
+          const requestJson = await request.json()
+        
+          return requestJson
+          
+    }catch(error){
+        console.log(error)
+    }
+ }
