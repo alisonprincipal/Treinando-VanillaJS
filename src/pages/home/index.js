@@ -46,3 +46,22 @@ const listEmpresas =(lista)=>{
 }
 listEmpresas(empresas)
 
+const logicHamburguer = ()=>{
+  const imgHamburguer =  document.querySelector('.hamburguer')
+  const container = document.querySelector('.containerHamburguer')
+  imgHamburguer.addEventListener('click',()=>{
+    if(!imgHamburguer.id){
+        imgHamburguer.src = 'src/assets/close.svg' 
+        imgHamburguer.id = 'close'
+        container.id='goOpen'
+    }else{
+        imgHamburguer.src = 'src/assets/open.svg'
+        imgHamburguer.id=''
+        container.id=''
+    }  
+
+
+
+  })
+}
+logicHamburguer()
