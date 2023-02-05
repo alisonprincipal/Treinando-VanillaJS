@@ -1,23 +1,32 @@
 .cabecalho{
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     flex-wrap: wrap;
 
+    gap: 12px;
+
     width: 100%;
     min-height: 80px;
-    padding: 0px 50px;
+    padding: 30px 50px;
     background-color: #ffffff;
+
+    position: fixed;
+    top: 0;
+    z-index: 99;
 
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .cabecalho>nav{
-    display: flex;
+    width: 100%;
+    max-width: 700px;
     gap: 15px;
     display: none;
+    align-items: center;
+    justify-content: center;
 }
 .cabecalho>nav>a{
     width: 140px;
@@ -56,11 +65,12 @@
     background-repeat: no-repeat;
     background-size: cover;
 
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 0 10px;
+    padding: 100px 10px 0px 10px;
 
     
 }
@@ -141,13 +151,26 @@
 .formLogin>a:hover{
     background-color: #c9c3c3;
 }
+#goOpen{
+    display: flex;
+}
 
 @media(min-width:620px){
+    .cabecalho{
+        flex-wrap: nowrap;
+    }
     .hamburguer{
         display: none;
     }
     .cabecalho>nav{
         display: flex;
+        justify-content: flex-end;
     }
  }
 
+ @media(min-width:341px){
+    .cabecalho{
+        justify-content: space-between;
+        gap: 30px;
+    }
+}

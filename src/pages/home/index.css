@@ -1,21 +1,31 @@
 .cabecalho{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
     flex-wrap: wrap;
 
+    justify-content: center;
+   
+    
+
+    gap: 12px;
     width: 100%;
     min-height: 80px;
-    padding: 0px 50px;
+    padding: 30px 50px;
     background-color: #ffffff;
+
+    position: fixed;
+    top: 0;
+    z-index: 99;
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .cabecalho>nav{
-    display: flex;
+    width: 100%;
+    max-width: 700px;
     gap: 15px;
     display: none;
+    align-items: center;
+    justify-content: center;
 }
 .cabecalho>nav>a{
     width: 140px;
@@ -49,12 +59,12 @@
     width: 100%;
     height: 100vh;
     display: flex;
-  
+    
+    
     gap: 50px;
-    padding-top: 10px;
+    padding-top: 113px;
     padding-left: 10px;
     padding-right: 10px;
-
    
 }
 .sectionImg{
@@ -153,6 +163,9 @@ color: #000000;
     color: #4200FF;
 }
 
+#goOpen{
+    display: flex;
+}
 
 
 @media(min-width:1000px){
@@ -164,11 +177,15 @@ color: #000000;
     }
 }
 @media(min-width:620px){
+    .cabecalho{
+        flex-wrap: nowrap;
+    }
     .hamburguer{
         display: none;
     }
     .cabecalho>nav{
         display: flex;
+        justify-content: flex-end;
     }
     .container{
         justify-content: center;
@@ -185,4 +202,9 @@ color: #000000;
     }
 
  }
-
+@media(min-width:341px){
+    .cabecalho{
+        justify-content: space-between;
+        gap: 30px;
+    }
+}
