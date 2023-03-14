@@ -1,4 +1,4 @@
-import { requestInfoUser,requestCompanyInfo,requestDepartamentInfo } from "../../scripts/request.js";
+import { requestInfoUser,requestCompanyInfo,requestDepartamentInfo,requestEditUser } from "../../scripts/request.js";
 import { modalEditUser } from "../../modals/modalEditUser.js";
 
 const infoUser= await requestInfoUser()
@@ -26,9 +26,9 @@ const templateSectionInfo = ()=>{
     `)
     const btnOpen = document.querySelector('.openModal')
     
-    btnOpen.addEventListener('click',()=>{
-
-        modalEditUser()
+    btnOpen.addEventListener('click',async()=>{
+        modalEditUser(requestEditUser)
+       
     })
 }
 templateSectionInfo()
@@ -38,7 +38,7 @@ const templateInfoCompany = async()=>{
     const infComapny = await requestCompanyInfo()
     const inforComp = document.querySelector('.inforCompany')
     const divCond =  document.querySelector('.difCondit')
-    console.log(infoUser)
+   
 
     if(infoUser.department_uuid==null){
         divCond.insertAdjacentHTML('beforeend',`

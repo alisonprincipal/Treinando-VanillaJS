@@ -13,6 +13,8 @@
     justify-content: center;
 
     padding: 10px;
+
+    z-index: 99;
 }
 .containerEditUser>div{
 
@@ -109,3 +111,11 @@ color: #FFFFFF;
     background-color: blue;
     border: 1px solid rgb(17, 17, 17);
 }
+
+.containerEditUser>div>form>input:focus{
+
+      box-shadow: 0 0 0 0;
+      outline: 0;
+      border: 1px solid rgb(38, 0, 255);
+   }
+

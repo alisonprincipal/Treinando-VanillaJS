@@ -14,7 +14,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99;
+    z-index: 98;
 
     gap: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -210,17 +210,9 @@
     line-height: 18px;
     color: #000000;
 }
-
-.openInforCompany{
-    display: flex;
-}
-.opendivCondit{
-    display: flex;
-}
 #goOpen{
     display: flex;
 }
-
 @media(min-width:620px){
     .hamburguer{
         display: none;

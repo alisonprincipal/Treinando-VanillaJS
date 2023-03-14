@@ -2,6 +2,7 @@ import { sucessoAndErro } from "./toastify.js"
 const baseUrl ='http://localhost:6278/'
 
 const token = localStorage.getItem('@token')
+export const test=()=>{}
 
 
 export const allSetores = async()=>{
@@ -151,3 +152,38 @@ export const requestCompanyInfo = async ()=>{
         console.log(error)
     }
  }
+
+export const requestEditUser = async(data)=>{
+
+    const verify  = Object.values(data)
+    if(verify.length!=0){
+        try{
+            const estrutura = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(data),
+            }
+        
+            const request = await fetch(`${baseUrl}users`,estrutura)
+             await request.json()
+        
+            if(request.ok){
+                sucessoAndErro('Alteração realizada com Sucesso','Dado(s) atualizado(s) :)')
+                setTimeout(()=>{window.location.reload()},3000)
+               
+               
+            }else{               
+                    sucessoAndErro(`Falha ao atualizar os dados, tente novamente`,`Nenhum dado(s)  foi atualizado :( `)
+            }
+           }
+           catch(error){
+            console.log(error.message)
+           }
+
+    }
+
+   
+}
