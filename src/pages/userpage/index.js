@@ -1,4 +1,6 @@
 import { requestInfoUser,requestCompanyInfo,requestDepartamentInfo } from "../../scripts/request.js";
+import { modalEditUser } from "../../modals/modalEditUser.js";
+
 const infoUser= await requestInfoUser()
 
 const templateSectionInfo = ()=>{
@@ -17,12 +19,17 @@ const templateSectionInfo = ()=>{
             <p>${modalit}</p>
         </div>
     </div>
-    <button>
+    <button class ='openModal'>
         <img src="../../assets/canetaEdit.svg" alt="">
     </button>
     
-    
     `)
+    const btnOpen = document.querySelector('.openModal')
+    
+    btnOpen.addEventListener('click',()=>{
+
+        modalEditUser()
+    })
 }
 templateSectionInfo()
 
