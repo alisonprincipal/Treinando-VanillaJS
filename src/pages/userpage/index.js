@@ -41,31 +41,48 @@ const templateInfoCompany = async()=>{
     console.log(infoUser)
 
     if(infoUser.department_uuid==null){
-        divCond.classList.add('opendivCondit')
+        divCond.insertAdjacentHTML('beforeend',`
+
+        <h3>Você ainda não foi contratado :(</h3>
+
+        `) 
     }else{
-        inforComp.classList.add('openInforCompany')
-    }
-
-    divCond.insertAdjacentHTML('beforeend',`
-
-         <h3>Você ainda não foi contratado :(</h3>
-
-         `)
-        
-    inforComp.insertAdjacentHTML('beforeend',`
+        inforComp.insertAdjacentHTML('beforeend',`
     
-    <h2>Company ${infoDepartment.name} - Department ${infComapny[0].name}</h2>
-
-        <ul>
-            ${infComapny[0].users.map((element)=>{
-                return(
-                   ` <li>
-                        <p>${element.username}</p>
-                        <span>${element.email}</span>
-                    </li>`
-                )
-            })}
-        </ul>
-    `)
+        <h2>Company ${infoDepartment.name} - Department ${infComapny[0].name}</h2>
+    
+            <ul>
+                ${infComapny[0].users.map((element)=>{
+                    return(
+                       ` <li>
+                            <p>${element.username}</p>
+                            <span>${element.email}</span>
+                        </li>`
+                    )
+                })}
+            </ul>
+        `)
+    }
 }
 templateInfoCompany()
+
+const logicHamburguer = ()=>{
+    const imgHamburguer =  document.querySelector('.hamburguer')
+    const container = document.querySelector('.containerHamburguer')
+    imgHamburguer.addEventListener('click',()=>{
+    
+      if(!imgHamburguer.id){
+          imgHamburguer.src = '../../assets/close.svg' 
+          imgHamburguer.id = 'close'
+          container.id='goOpen'
+      }else{
+          imgHamburguer.src = '../../assets/open.svg'
+          imgHamburguer.id=''
+          container.id=''
+      }  
+  
+  
+  
+    })
+  }
+  logicHamburguer()
