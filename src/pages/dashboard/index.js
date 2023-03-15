@@ -1,5 +1,6 @@
 import { allEmpresas , requestDepartamentById,requestDepartaments } from "../../scripts/request.js"
 import { modalCreateDepartament } from "../../modals/modalCreateDepartament.js"
+import { modalEditDepartament } from "../../modals/modalEditDepartament.js"
 const empresas = await allEmpresas()
 
 const allDepartaments = await requestDepartaments()
@@ -50,19 +51,33 @@ const templateSectionEmpresas =(data)=>{
       <p>${element.description}</p>
       <p>${element.companies.name}</p>
       <div>
-          <button>
-              <img src="../../assets/olho.svg" alt=" imagem de um olho">
+          <button class='btnOlho'>
+              <img  src="../../assets/olho.svg" alt=" imagem de um olho">
           </button>
-          <button>
-              <img src="../../assets/caneta.svg" alt="imagem de uma caneta">
+
+          <button class='btnCaneta'>
+              <img class='${element.description}' id='${element.uuid}' src="../../assets/caneta.svg" alt="imagem de uma caneta">
           </button>
-          <button>
+
+          <button class='btnLixeira'>
               <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
           </button>
       </div>
     </li>
     `)
   }))
+
+  const btnEdit = document.querySelectorAll('.btnCaneta')
+
+  btnEdit.forEach((btnElement=>{
+    btnElement.addEventListener('click',(event)=>{  
+      const description = event.target.className
+      const id = event.target.id
+      modalEditDepartament(description,id)
+    })
+  }))
+ 
+
 }
 templateSectionEmpresas(allDepartaments)
 

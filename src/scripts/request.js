@@ -245,4 +245,32 @@ catch(error){
     console.log(error)
 }
 }
+export const requestEditDepartament=async(data,id)=>{
+    try{
+    
+        const estrutura = {
+            method:'PATCH',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        }
+        const request = await fetch(`${baseUrl}departments/${id}`,estrutura)
+        await request.json()
+    
+        
+    
+        if(request.ok){
+            sucessoAndErro('Descrição alterada com Sucesso',`Dados atualizados :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Error ao editar Departamento','Tente novamente ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+    }
 
