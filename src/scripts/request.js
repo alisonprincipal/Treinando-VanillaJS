@@ -273,4 +273,28 @@ export const requestEditDepartament=async(data,id)=>{
         console.log(error)
     }
     }
+export const requestDeleteDepartament=async(id)=>{
+        try{
+        
+            const estrutura = {
+                method:'DELETE',
+                headers:{
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                }  
+            }
+            const request = await fetch(`${baseUrl}departments/${id}`,estrutura)
+            if(request.ok){
+                sucessoAndErro('Departamento Excluído com sucesso',`Departamento removido do sistema :)`)
+                setTimeout(()=>{window.location.reload()},3000)
+            }else{
+                sucessoAndErro('Error ao excluir Departamento','Tente novamente ;)')
+            }
+            return request.ok
+        }
+        catch(error){
+            console.log(error)
+        }
+        }
+    
 

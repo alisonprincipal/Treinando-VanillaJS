@@ -1,6 +1,7 @@
 import { allEmpresas , requestDepartamentById,requestDepartaments } from "../../scripts/request.js"
 import { modalCreateDepartament } from "../../modals/modalCreateDepartament.js"
 import { modalEditDepartament } from "../../modals/modalEditDepartament.js"
+import { modalDeletDepartament } from "../../modals/modalDeleteDepartament.js"
 const empresas = await allEmpresas()
 
 const allDepartaments = await requestDepartaments()
@@ -60,7 +61,7 @@ const templateSectionEmpresas =(data)=>{
           </button>
 
           <button class='btnLixeira'>
-              <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+              <img class='${element.name}' id='${element.uuid}' src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
           </button>
       </div>
     </li>
@@ -68,13 +69,21 @@ const templateSectionEmpresas =(data)=>{
   }))
 
   const btnEdit = document.querySelectorAll('.btnCaneta')
-
   btnEdit.forEach((btnElement=>{
     btnElement.addEventListener('click',(event)=>{  
       const description = event.target.className
       const id = event.target.id
       modalEditDepartament(description,id)
     })
+  }))
+
+  const btnDelet = document.querySelectorAll('.btnLixeira')
+  btnDelet.forEach((btnElemet=>{
+   btnElemet.addEventListener('click',(event)=>{
+    const nameDepartament = event.target.className
+    const id = event.target.id
+    modalDeletDepartament(nameDepartament,id)
+   })
   }))
  
 
