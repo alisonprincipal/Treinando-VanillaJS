@@ -1,7 +1,7 @@
 export const modalEditUser =(functionEdit)=>{
-    const div = document.querySelector('.containerEdit')
+    const body = document.querySelector('body')
 
-    div.insertAdjacentHTML('beforeend',`
+    body.insertAdjacentHTML('beforeend',`
     <div class='containerEditUser'>
         <div>
                 <button class='closeModal'>X</button>

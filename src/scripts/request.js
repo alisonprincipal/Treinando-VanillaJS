@@ -187,7 +187,7 @@ export const requestEditUser = async(data)=>{
 
    
 }
-export const requestDepartaments=async(data)=>{
+export const requestDepartaments=async()=>{
 
     const estrutura = {
         method:'GET',
@@ -217,3 +217,32 @@ export const requestDepartamentById=async(data)=>{
 
     return requestJson
 }
+export const requestCreateDepartament=async(data)=>{
+try{
+
+    const estrutura = {
+        method:'POST',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    }
+    const request = await fetch(`${baseUrl}departments`,estrutura)
+    const requestJson = await request.json()
+
+    
+
+    if(request.ok){
+        sucessoAndErro('Departamento criado com Sucesso',`Agora o Departamento ${data.name} faz parte da nossa empresa :)`)
+        setTimeout(()=>{window.location.reload()},3000)
+    }else{
+        sucessoAndErro('Error ao criar Departamento','Verifique se todos os campos foram preenchidos e tente novamente')
+    }
+    return request.ok
+}
+catch(error){
+    console.log(error)
+}
+}
+

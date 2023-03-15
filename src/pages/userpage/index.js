@@ -1,6 +1,7 @@
 import { requestInfoUser,requestCompanyInfo,requestDepartamentInfo,requestEditUser } from "../../scripts/request.js";
 import { modalEditUser } from "../../modals/modalEditUser.js";
 
+
 const infoUser= await requestInfoUser()
 
 const templateSectionInfo = ()=>{

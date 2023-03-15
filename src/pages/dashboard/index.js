@@ -1,5 +1,5 @@
 import { allEmpresas , requestDepartamentById,requestDepartaments } from "../../scripts/request.js"
-
+import { modalCreateDepartament } from "../../modals/modalCreateDepartament.js"
 const empresas = await allEmpresas()
 
 const allDepartaments = await requestDepartaments()
@@ -66,6 +66,14 @@ const templateSectionEmpresas =(data)=>{
 }
 templateSectionEmpresas(allDepartaments)
 
+const createDepartament =  ()=>{
+  const btn = document.querySelector('.btnCreate')
+
+  btn.addEventListener('click',(event)=>{
+    modalCreateDepartament()
+  })
+}
+createDepartament()
 
 const logicHamburguer = ()=>{
     const imgHamburguer =  document.querySelector('.hamburguer')
