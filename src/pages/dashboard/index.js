@@ -1,3 +1,71 @@
+import { allEmpresas , requestDepartamentById,requestDepartaments } from "../../scripts/request.js"
+
+const empresas = await allEmpresas()
+
+const allDepartaments = await requestDepartaments()
+
+const selectDomDashboard = ()=>{
+  const ul = document.querySelector('.listaDepartamentos')
+
+  const select = document.querySelector('.selectDashBoard')
+  empresas.forEach((element=>{
+    select.insertAdjacentHTML('beforeend',`
+    <option value=${element.uuid}>${element.name}</option>
+    `)
+  }))
+
+  select.addEventListener('click',async(event)=>{
+
+    const value  = event.target.value
+    
+    if(value!=''){
+    const departaments= await requestDepartamentById(value)
+
+      if(departaments.length!=0){
+        ul.innerHTML=''
+         templateSectionEmpresas(departaments)
+      }else{
+        ul.innerHTML=''
+        ul.insertAdjacentHTML('beforeend',`
+        <h5>Nenhum departamento cadastrado nessa empresa :(</h5>
+        `)
+      }
+ 
+    }else{
+      ul.innerHTML=''
+      templateSectionEmpresas(allDepartaments)
+    }
+  })
+}
+selectDomDashboard()
+
+const templateSectionEmpresas =(data)=>{
+ 
+  const ul = document.querySelector('.listaDepartamentos')
+
+  data.forEach((element=>{
+    ul.insertAdjacentHTML('beforeend',`
+    <li>
+      <h5>${element.name}</h5>
+      <p>${element.description}</p>
+      <p>${element.companies.name}</p>
+      <div>
+          <button>
+              <img src="../../assets/olho.svg" alt=" imagem de um olho">
+          </button>
+          <button>
+              <img src="../../assets/caneta.svg" alt="imagem de uma caneta">
+          </button>
+          <button>
+              <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+          </button>
+      </div>
+    </li>
+    `)
+  }))
+}
+templateSectionEmpresas(allDepartaments)
+
 
 const logicHamburguer = ()=>{
     const imgHamburguer =  document.querySelector('.hamburguer')

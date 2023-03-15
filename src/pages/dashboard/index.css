@@ -144,6 +144,10 @@
     overflow-y: auto;
 
 }
+.sectionEmpresas>ul>h5{
+    font-size: 30px;
+    text-align: center;
+}
 .sectionEmpresas>ul>li{
     width: 100%;
     max-width: 489px;

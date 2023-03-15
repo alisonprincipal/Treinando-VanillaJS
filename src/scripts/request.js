@@ -187,3 +187,33 @@ export const requestEditUser = async(data)=>{
 
    
 }
+export const requestDepartaments=async(data)=>{
+
+    const estrutura = {
+        method:'GET',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }
+
+    const request = await fetch(`${baseUrl}departments`,estrutura)
+    const requestJson = await request.json()
+
+    return requestJson
+}
+export const requestDepartamentById=async(data)=>{
+
+    const estrutura = {
+        method:'GET',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }
+
+    const request = await fetch(`${baseUrl}departments/${data}`,estrutura)
+    const requestJson = await request.json()
+
+    return requestJson
+}
