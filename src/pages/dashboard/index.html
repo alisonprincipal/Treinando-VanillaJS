@@ -5,20 +5,135 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/fiv.jpeg" type="image/x-icon">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../../style/styleToast.css">
+    <link rel="stylesheet" href="../../style/modalDeleteDepartament.css">
+    <link rel="stylesheet" href="../../style/modalEditDepartament.css">
+    <link rel="stylesheet" href="../../style/modalCreateDepartament.css">
     <link rel="stylesheet" href="../../style/globalStyle.css">
+    <link rel="stylesheet" href="index.css">
     <script defer type="module" src="./index.js"></script>
     <title>Dashboard</title>
 </head>
 <body>
     <header class="cabecalho">
-        <img src="../../assets/logo.svg" alt="logo site">
+        <div>
+            <img src="../../assets/logo.svg" alt="logo site">
+            <img class="hamburguer" src="../../assets/open.svg" alt=""> 
+        </div>
 
         <img class="hamburguer" src="../../assets/vectorTraço.svg" alt="">
-        <nav>
+        <nav class="containerHamburguer">
             <a href="../../../index.html">Logout</a>
         </nav>
     </header>
-    <h1>DashBoard</h1>
+
+    <main class="containerDashboard">
+       <section class="sectionEmpresas">
+        <div class="cabecalhoSectionEmpresas">
+            <h2>Departamentos</h2>
+            <select class="selectDashBoard" name="" id="">
+                <option value="">Selecionar Empresa</option>
+            </select>
+            <button class="btnCreate">
+                Criar
+                <img src="../../assets/mais.svg" alt="">
+            </button>
+        </div>
+        <ul class="listaDepartamentos">
+        </ul>
+       </section>
+
+       <section  class="sectionEmpresas">
+        <div class="cabecalhoSectionUsuarios">
+            <h2>Usuários cadastrados</h2>
+        </div>
+
+        <ul>
+            <li>
+                <h5>UserName</h5>
+                <p>Nivel user</p>
+                <p>Company Name</p>
+                <div>
+                    <button>
+                        <img src="../../assets/caneta.svg" alt="imagem de uma caneta">
+                    </button>
+                    <button>
+                        <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                    </button>
+                </div>
+            </li> 
+            <li>
+                <h5>UserName</h5>
+                <p>Nivel user</p>
+                <p>Company Name</p>
+                <div>
+                    <button>
+                        <img src="../../assets/caneta.svg" alt="imagem de uma caneta">
+                    </button>
+                    <button>
+                        <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                    </button>
+                </div>
+            </li>  
+            <li>
+                <h5>UserName</h5>
+                <p>Nivel user</p>
+                <p>Company Name</p>
+                <div>
+                    <button>
+                        <img src="../../assets/caneta.svg" alt="imagem de uma caneta">
+                    </button>
+                    <button>
+                        <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                    </button>
+                </div>
+            </li>  
+            <li>
+                <h5>UserName</h5>
+                <p>Nivel user</p>
+                <p>Company Name</p>
+                <div>
+                    <button>
+                        <img src="../../assets/caneta.svg" alt="imagem de uma caneta">
+                    </button>
+                    <button>
+                        <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                    </button>
+                </div>
+            </li>  
+            <li>
+                <h5>UserName</h5>
+                <p>Nivel user</p>
+                <p>Company Name</p>
+                <div>
+                    <button>
+                        <img src="../../assets/caneta.svg" alt="imagem de uma caneta">
+                    </button>
+                    <button>
+                        <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                    </button>
+                </div>
+            </li>  
+            <li>
+                <h5>UserName</h5>
+                <p>Nivel user</p>
+                <p>Company Name</p>
+                <div>
+                    <button>
+                        <img src="../../assets/caneta.svg" alt="imagem de uma caneta">
+                    </button>
+                    <button>
+                        <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                    </button>
+                </div>
+            </li>      
+        </ul>
+        
+       </section>
+    </main>
+
+    <select name="" id="">
+        <option value="">Selecionar empresa</option>
+    </select>
 </body>
 </html>

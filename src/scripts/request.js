@@ -2,6 +2,7 @@ import { sucessoAndErro } from "./toastify.js"
 const baseUrl ='http://localhost:6278/'
 
 const token = localStorage.getItem('@token')
+export const test=()=>{}
 
 
 export const allSetores = async()=>{
@@ -151,3 +152,149 @@ export const requestCompanyInfo = async ()=>{
         console.log(error)
     }
  }
+
+export const requestEditUser = async(data)=>{
+
+    const verify  = Object.values(data)
+    if(verify.length!=0){
+        try{
+            const estrutura = {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(data),
+            }
+        
+            const request = await fetch(`${baseUrl}users`,estrutura)
+             await request.json()
+        
+            if(request.ok){
+                sucessoAndErro('Alteração realizada com Sucesso','Dado(s) atualizado(s) :)')
+                setTimeout(()=>{window.location.reload()},3000)
+               
+               
+            }else{               
+                    sucessoAndErro(`Falha ao atualizar os dados, tente novamente`,`Nenhum dado(s)  foi atualizado :( `)
+            }
+           }
+           catch(error){
+            console.log(error.message)
+           }
+
+    }
+
+   
+}
+export const requestDepartaments=async()=>{
+
+    const estrutura = {
+        method:'GET',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }
+
+    const request = await fetch(`${baseUrl}departments`,estrutura)
+    const requestJson = await request.json()
+
+    return requestJson
+}
+export const requestDepartamentById=async(data)=>{
+
+    const estrutura = {
+        method:'GET',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }
+
+    const request = await fetch(`${baseUrl}departments/${data}`,estrutura)
+    const requestJson = await request.json()
+
+    return requestJson
+}
+export const requestCreateDepartament=async(data)=>{
+try{
+
+    const estrutura = {
+        method:'POST',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    }
+    const request = await fetch(`${baseUrl}departments`,estrutura)
+    const requestJson = await request.json()
+
+    
+
+    if(request.ok){
+        sucessoAndErro('Departamento criado com Sucesso',`Agora o Departamento ${data.name} faz parte da nossa empresa :)`)
+        setTimeout(()=>{window.location.reload()},3000)
+    }else{
+        sucessoAndErro('Error ao criar Departamento','Verifique se todos os campos foram preenchidos e tente novamente')
+    }
+    return request.ok
+}
+catch(error){
+    console.log(error)
+}
+}
+export const requestEditDepartament=async(data,id)=>{
+    try{
+    
+        const estrutura = {
+            method:'PATCH',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        }
+        const request = await fetch(`${baseUrl}departments/${id}`,estrutura)
+        await request.json()
+    
+        
+    
+        if(request.ok){
+            sucessoAndErro('Descrição alterada com Sucesso',`Dados atualizados :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Error ao editar Departamento','Tente novamente ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+    }
+export const requestDeleteDepartament=async(id)=>{
+        try{
+        
+            const estrutura = {
+                method:'DELETE',
+                headers:{
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`
+                }  
+            }
+            const request = await fetch(`${baseUrl}departments/${id}`,estrutura)
+            if(request.ok){
+                sucessoAndErro('Departamento Excluído com sucesso',`Departamento removido do sistema :)`)
+                setTimeout(()=>{window.location.reload()},3000)
+            }else{
+                sucessoAndErro('Error ao excluir Departamento','Tente novamente ;)')
+            }
+            return request.ok
+        }
+        catch(error){
+            console.log(error)
+        }
+        }
+    
+

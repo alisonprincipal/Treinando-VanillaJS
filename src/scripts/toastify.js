@@ -20,3 +20,4 @@ export function sucessoAndErro(titulo, mensagem) {
     div.append(divimg,saudacao)
     body.appendChild(div)
 }
+

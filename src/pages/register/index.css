@@ -1,16 +1,22 @@
 .cabecalho{
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     flex-wrap: wrap;
 
     width: 100%;
     min-height: 80px;
-    padding: 0px 50px;
+    padding: 30px 50px;
     background-color: #ffffff;
 
+    gap: 12px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
 
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -155,8 +161,14 @@
 .formRegister>a:hover{
     background-color: #c9c3c3;
 }
+#goOpen{
+    display: flex;
+}
 
 @media(min-width:620px){
+    .container{
+        margin-top: 110px;
+    }
     .hamburguer{
         display: none;
     }
@@ -164,4 +176,12 @@
         display: flex;
     }
  }
+
+
+ @media(min-width:341px){
+    .cabecalho{
+        justify-content: space-between;
+        gap: 30px;
+    }
+}
 

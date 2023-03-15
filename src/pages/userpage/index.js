@@ -1,4 +1,7 @@
-import { requestInfoUser,requestCompanyInfo,requestDepartamentInfo } from "../../scripts/request.js";
+import { requestInfoUser,requestCompanyInfo,requestDepartamentInfo,requestEditUser } from "../../scripts/request.js";
+import { modalEditUser } from "../../modals/modalEditUser.js";
+
+
 const infoUser= await requestInfoUser()
 
 const templateSectionInfo = ()=>{
@@ -17,12 +20,17 @@ const templateSectionInfo = ()=>{
             <p>${modalit}</p>
         </div>
     </div>
-    <button>
+    <button class ='openModal'>
         <img src="../../assets/canetaEdit.svg" alt="">
     </button>
     
-    
     `)
+    const btnOpen = document.querySelector('.openModal')
+    
+    btnOpen.addEventListener('click',async()=>{
+        modalEditUser(requestEditUser)
+       
+    })
 }
 templateSectionInfo()
 
@@ -31,34 +39,51 @@ const templateInfoCompany = async()=>{
     const infComapny = await requestCompanyInfo()
     const inforComp = document.querySelector('.inforCompany')
     const divCond =  document.querySelector('.difCondit')
-    console.log(infoUser)
+   
 
     if(infoUser.department_uuid==null){
-        divCond.classList.add('opendivCondit')
+        divCond.insertAdjacentHTML('beforeend',`
+
+        <h3>Você ainda não foi contratado :(</h3>
+
+        `) 
     }else{
-        inforComp.classList.add('openInforCompany')
-    }
-
-    divCond.insertAdjacentHTML('beforeend',`
-
-         <h3>Você ainda não foi contratado :(</h3>
-
-         `)
-        
-    inforComp.insertAdjacentHTML('beforeend',`
+        inforComp.insertAdjacentHTML('beforeend',`
     
-    <h2>Company ${infoDepartment.name} - Department ${infComapny[0].name}</h2>
-
-        <ul>
-            ${infComapny[0].users.map((element)=>{
-                return(
-                   ` <li>
-                        <p>${element.username}</p>
-                        <span>${element.email}</span>
-                    </li>`
-                )
-            })}
-        </ul>
-    `)
+        <h2>Company ${infoDepartment.name} - Department ${infComapny[0].name}</h2>
+    
+            <ul>
+                ${infComapny[0].users.map((element)=>{
+                    return(
+                       ` <li>
+                            <p>${element.username}</p>
+                            <span>${element.email}</span>
+                        </li>`
+                    )
+                })}
+            </ul>
+        `)
+    }
 }
 templateInfoCompany()
+
+const logicHamburguer = ()=>{
+    const imgHamburguer =  document.querySelector('.hamburguer')
+    const container = document.querySelector('.containerHamburguer')
+    imgHamburguer.addEventListener('click',()=>{
+    
+      if(!imgHamburguer.id){
+          imgHamburguer.src = '../../assets/close.svg' 
+          imgHamburguer.id = 'close'
+          container.id='goOpen'
+      }else{
+          imgHamburguer.src = '../../assets/open.svg'
+          imgHamburguer.id=''
+          container.id=''
+      }  
+  
+  
+  
+    })
+  }
+  logicHamburguer()
