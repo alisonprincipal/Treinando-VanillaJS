@@ -1,10 +1,25 @@
-import { allEmpresas , requestDepartamentById,requestDepartaments } from "../../scripts/request.js"
+import { allEmpresas ,requestAllusers ,requestDepartamentById,requestDepartaments,requestProtection } from "../../scripts/request.js"
 import { modalCreateDepartament } from "../../modals/modalCreateDepartament.js"
 import { modalEditDepartament } from "../../modals/modalEditDepartament.js"
 import { modalDeletDepartament } from "../../modals/modalDeleteDepartament.js"
+import { modalInfoDepartament } from "../../modals/modalInfoDepartament.js"
+import { modalUpdateUser } from "../../modals/modalUpdateUser.js"
+import { modalDeleteUser } from "../../modals/modalDeleteUser.js"
+
+const protectionDashBoard =async()=>{
+  const permission = await requestProtection()
+  if(!permission){
+    window.location.replace('../login/index.html')
+  }
+}
+await protectionDashBoard()
+
+
 const empresas = await allEmpresas()
 
 const allDepartaments = await requestDepartaments()
+
+const allUsers = await requestAllusers()
 
 const selectDomDashboard = ()=>{
   const ul = document.querySelector('.listaDepartamentos')
@@ -52,8 +67,8 @@ const templateSectionEmpresas =(data)=>{
       <p>${element.description}</p>
       <p>${element.companies.name}</p>
       <div>
-          <button class='btnOlho'>
-              <img  src="../../assets/olho.svg" alt=" imagem de um olho">
+          <button class='btnInfo'>
+              <img class='${element.name},${element.description},${element.companies.name}' id='${element.uuid}'  src="../../assets/olho.svg" alt=" imagem de um olho">
           </button>
 
           <button class='btnCaneta'>
@@ -66,6 +81,18 @@ const templateSectionEmpresas =(data)=>{
       </div>
     </li>
     `)
+  }))
+
+  const btnInfo = document.querySelectorAll('.btnInfo')
+  btnInfo.forEach((btnElement=>{
+    btnElement.addEventListener('click',(event)=>{
+      const nameAndDescriptionAndCompany  = event.target.className.split(',')
+    
+      const id = event.target.id
+     
+      modalInfoDepartament(nameAndDescriptionAndCompany,id) 
+    })
+
   }))
 
   const btnEdit = document.querySelectorAll('.btnCaneta')
@@ -89,6 +116,58 @@ const templateSectionEmpresas =(data)=>{
 
 }
 templateSectionEmpresas(allDepartaments)
+
+const templateSectionUsers =()=>{
+  const ul = document.querySelector('.listaUsuarios')
+  ul.insertAdjacentHTML('beforeend',`
+  ${
+    allUsers.map((element=>{
+
+      let modality = element.kind_of_work
+      if(modality==null)modality=''
+
+      if(element.username!='ADMIN'){
+        return(
+          `
+              <li>
+                  <h5>${element.username}</h5>
+                  <p>${element.professional_level}</p>
+                  <p>${modality}</p>
+                  <div>
+                      <button class='btnEdit'>
+                          <img  id ='${element.uuid}' src="../../assets/caneta.svg" alt="imagem de uma caneta">
+                      </button>
+                      <button class='btnDelete'>
+                          <img id =${element.uuid} class='${element.username}' src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                      </button>
+                  </div>
+              </li> 
+          `
+        )
+      }
+    })).join('')
+  }
+  `)  
+
+  const btnEdit = document.querySelectorAll('.btnEdit')
+  btnEdit.forEach((btnElement=>{
+    btnElement.addEventListener('click',(event)=>{
+      const id = event.target.id
+      modalUpdateUser(id)
+    })
+  }))  
+
+  const btnDelete = document.querySelectorAll('.btnDelete')
+  btnDelete.forEach((btnElement=>{
+    btnElement.addEventListener('click',(event)=>{
+      const name = event.target.className
+      const id = event.target.id
+      modalDeleteUser(name,id)
+    })
+  }))
+}
+
+templateSectionUsers()
 
 const createDepartament =  ()=>{
   const btn = document.querySelector('.btnCreate')
@@ -118,4 +197,4 @@ const logicHamburguer = ()=>{
   
     })
   }
-  logicHamburguer()
+logicHamburguer()

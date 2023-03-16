@@ -73,6 +73,25 @@ export const requestPermission= async(token)=>{
     console.log(error)
    }
 }
+export const requestProtection= async()=>{
+    try{
+         const estrutura = {
+             method: "GET",
+             headers: {
+                 "Content-Type": "application/json",
+                 'Authorization': `Bearer ${token}`
+             },
+         }
+         const request = await fetch(`${baseUrl}auth/validate_user`,estrutura)
+         const requestJson = await request.json()
+         const admin = requestJson.is_admin
+        return admin
+      }
+ 
+    catch(error){
+     console.log(error)
+    }
+ }
 export const requestRegistro= async(data)=>{
     const estrutura = {
         method: "POST",
@@ -180,7 +199,7 @@ export const requestEditUser = async(data)=>{
             }
            }
            catch(error){
-            console.log(error.message)
+            console.log(error)
            }
 
     }
@@ -296,5 +315,132 @@ export const requestDeleteDepartament=async(id)=>{
             console.log(error)
         }
         }
+export const requestAllusersNotDepartament =async()=>{
+
+    const estrutura={
+        method:'GET',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }
+     const request = await fetch(`${baseUrl}admin/out_of_work`,estrutura)
+     const requestJson = await request.json()
+
+     return requestJson
+}
+export const requestAllusers =async()=>{
+
+    const estrutura={
+        method:'GET',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }
+     const request = await fetch(`${baseUrl}users`,estrutura)
+     const requestJson = await request.json()
+
+     return requestJson
+}
+export const requestContractUser=async(data)=>{
+    try{
+        const estrutura={
+            method:'PATCH',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            },
+            body:JSON.stringify(data)
+        }
+         const request = await fetch(`${baseUrl}departments/hire`,estrutura)
+           await request.json()
     
+         if(request.ok){
+            sucessoAndErro('Usuário Contratado!',`Você acaba de salvar a vida de um usuário :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Erro ao contratar um usuário','Escolha um que esteja desempregado e boa sorte ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
+export const requestDemissionUser=async(id)=>{
+    try{
+        const estrutura={
+            method:'PATCH',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }
+         const request = await fetch(`${baseUrl}departments/dismiss/${id}`,estrutura)
+           await request.json()
+    
+         if(request.ok){
+            sucessoAndErro('Funcionário Demitido!',`Você acaba de colocar um pai de familia na rua :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Erro ao demitir um usuário','Tem certeza que quer prosseguir? ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
+export const requestUpdateUser=async(data,id)=>{
+    try{
+        const estrutura={
+            method:'PATCH',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            },
+            body:JSON.stringify(data)
+        }
+         const request = await fetch(`${baseUrl}admin/update_user/${id}`,estrutura)
+           await request.json()
+    
+         if(request.ok){
+            sucessoAndErro('Alteração realizada com Sucesso',`Os dados do usuários foram atualizados :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Erro ao atualizar usuario','Verifique os dados e tenten novamente ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
+export const requestDeleteUser=async(id)=>{
+    try{
+        const estrutura={
+            method:'DELETE',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }
+         const request = await fetch(`${baseUrl}admin/delete_user/${id}`,estrutura)
+         if(request.ok){
+            sucessoAndErro('Usuário excluído com sucesso!',`Usuario removido do banco de dados :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Erro ao deletar usuario','Verifique os dados e tenten novamente ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
 
