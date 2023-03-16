@@ -1,12 +1,15 @@
-import { allEmpresas , requestDepartamentById,requestDepartaments } from "../../scripts/request.js"
+import { allEmpresas ,requestAllusers ,requestDepartamentById,requestDepartaments } from "../../scripts/request.js"
 import { modalCreateDepartament } from "../../modals/modalCreateDepartament.js"
 import { modalEditDepartament } from "../../modals/modalEditDepartament.js"
 import { modalDeletDepartament } from "../../modals/modalDeleteDepartament.js"
 import { modalInfoDepartament } from "../../modals/modalInfoDepartament.js"
+import { modalUpdateUser } from "../../modals/modalUpdateUser.js"
 
 const empresas = await allEmpresas()
 
 const allDepartaments = await requestDepartaments()
+
+const allUsers = await requestAllusers()
 
 const selectDomDashboard = ()=>{
   const ul = document.querySelector('.listaDepartamentos')
@@ -104,6 +107,49 @@ const templateSectionEmpresas =(data)=>{
 }
 templateSectionEmpresas(allDepartaments)
 
+const templateSectionUsers =()=>{
+  const ul = document.querySelector('.listaUsuarios')
+  ul.insertAdjacentHTML('beforeend',`
+  ${
+    allUsers.map((element=>{
+
+      let modality = element.kind_of_work
+      if(modality==null)modality=''
+
+      if(element.username!='ADMIN'){
+        return(
+          `
+              <li>
+                  <h5>${element.username}</h5>
+                  <p>${element.professional_level}</p>
+                  <p>${modality}</p>
+                  <div>
+                      <button class='btnEdit' id ='${element.uuid}'>
+                          <img  id ='${element.uuid}' src="../../assets/caneta.svg" alt="imagem de uma caneta">
+                      </button>
+                      <button class='btnDelete' id =${element.uuid}>
+                          <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                      </button>
+                  </div>
+              </li> 
+          `
+        )
+      }
+    })).join('')
+  }
+  `)  
+
+  const btnEdit = document.querySelectorAll('.btnEdit')
+  btnEdit.forEach((btnElement=>{
+    btnElement.addEventListener('click',(event)=>{
+      const id = event.target.id
+      modalUpdateUser(id)
+    })
+  }))  
+}
+
+templateSectionUsers()
+
 const createDepartament =  ()=>{
   const btn = document.querySelector('.btnCreate')
 
@@ -132,4 +178,4 @@ const logicHamburguer = ()=>{
   
     })
   }
-  logicHamburguer()
+logicHamburguer()

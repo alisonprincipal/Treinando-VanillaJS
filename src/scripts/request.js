@@ -375,3 +375,29 @@ export const requestDemissionUser=async(id)=>{
     }
 
 }
+export const requestUpdateUser=async(data,id)=>{
+    try{
+        const estrutura={
+            method:'PATCH',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            },
+            body:JSON.stringify(data)
+        }
+         const request = await fetch(`${baseUrl}admin/update_user/${id}`,estrutura)
+           await request.json()
+    
+         if(request.ok){
+            sucessoAndErro('Alteração realizada com Sucesso',`Os dados do usuários foram atualizados :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Erro ao atualizar usuario','Verifique os dados e tenten novamente ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
