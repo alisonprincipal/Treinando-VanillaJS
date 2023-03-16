@@ -324,4 +324,54 @@ export const requestAllusers =async()=>{
 
      return requestJson
 }
+export const requestContractUser=async(data)=>{
+    try{
+        const estrutura={
+            method:'PATCH',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            },
+            body:JSON.stringify(data)
+        }
+         const request = await fetch(`${baseUrl}departments/hire`,estrutura)
+           await request.json()
+    
+         if(request.ok){
+            sucessoAndErro('Usuário Contratado!',`Você acaba de salvar a vida de um usuário :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Erro ao contratar um usuário','Escolha um que esteja desempregado e boa sorte ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
 
+}
+export const requestDemissionUser=async(id)=>{
+    try{
+        const estrutura={
+            method:'PATCH',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }
+         const request = await fetch(`${baseUrl}departments/dismiss/${id}`,estrutura)
+           await request.json()
+    
+         if(request.ok){
+            sucessoAndErro('Funcionário Demitido!',`Você acaba de colocar um pai de familia na rua :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Erro ao demitir um usuário','Tem certeza que quer prosseguir? ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
