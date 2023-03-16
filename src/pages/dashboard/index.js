@@ -1,10 +1,19 @@
-import { allEmpresas ,requestAllusers ,requestDepartamentById,requestDepartaments } from "../../scripts/request.js"
+import { allEmpresas ,requestAllusers ,requestDepartamentById,requestDepartaments,requestProtection } from "../../scripts/request.js"
 import { modalCreateDepartament } from "../../modals/modalCreateDepartament.js"
 import { modalEditDepartament } from "../../modals/modalEditDepartament.js"
 import { modalDeletDepartament } from "../../modals/modalDeleteDepartament.js"
 import { modalInfoDepartament } from "../../modals/modalInfoDepartament.js"
 import { modalUpdateUser } from "../../modals/modalUpdateUser.js"
 import { modalDeleteUser } from "../../modals/modalDeleteUser.js"
+
+const protectionDashBoard =async()=>{
+  const permission = await requestProtection()
+  if(!permission){
+    window.location.replace('../login/index.html')
+  }
+}
+await protectionDashBoard()
+
 
 const empresas = await allEmpresas()
 

@@ -73,6 +73,25 @@ export const requestPermission= async(token)=>{
     console.log(error)
    }
 }
+export const requestProtection= async()=>{
+    try{
+         const estrutura = {
+             method: "GET",
+             headers: {
+                 "Content-Type": "application/json",
+                 'Authorization': `Bearer ${token}`
+             },
+         }
+         const request = await fetch(`${baseUrl}auth/validate_user`,estrutura)
+         const requestJson = await request.json()
+         const admin = requestJson.is_admin
+        return admin
+      }
+ 
+    catch(error){
+     console.log(error)
+    }
+ }
 export const requestRegistro= async(data)=>{
     const estrutura = {
         method: "POST",
@@ -180,7 +199,7 @@ export const requestEditUser = async(data)=>{
             }
            }
            catch(error){
-            console.log(error.message)
+            console.log(error)
            }
 
     }

@@ -1,5 +1,17 @@
-import { requestInfoUser,requestCompanyInfo,requestDepartamentInfo,requestEditUser } from "../../scripts/request.js";
+import { requestInfoUser,requestCompanyInfo,requestDepartamentInfo,requestEditUser, requestProtection } from "../../scripts/request.js";
 import { modalEditUser } from "../../modals/modalEditUser.js";
+
+const protectionUserPage =async()=>{
+    const permission = await requestProtection()
+    console.log(permission)
+
+     if(permission || permission==undefined ){
+      window.location.replace('../login/index.html')
+    } 
+  }
+  await protectionUserPage()
+  
+  
 
 
 const infoUser= await requestInfoUser()
@@ -37,31 +49,33 @@ templateSectionInfo()
 const templateInfoCompany = async()=>{
     const infoDepartment = await requestDepartamentInfo()
     const infComapny = await requestCompanyInfo()
-    const inforComp = document.querySelector('.inforCompany')
-    const divCond =  document.querySelector('.difCondit')
+    const container =  document.querySelector('.containerUser')
    
 
     if(infoUser.department_uuid==null){
-        divCond.insertAdjacentHTML('beforeend',`
+        container.insertAdjacentHTML('beforeend',`
 
-        <h3>Você ainda não foi contratado :(</h3>
+        <div class="difCondit">
+            <h3>Você ainda não foi contratado :(</h3>       
+        </div>
 
         `) 
     }else{
-        inforComp.insertAdjacentHTML('beforeend',`
-    
+        container.insertAdjacentHTML('beforeend',`
+        <section class="inforCompany">
         <h2>Company ${infoDepartment.name} - Department ${infComapny[0].name}</h2>
     
-            <ul>
-                ${infComapny[0].users.map((element)=>{
-                    return(
-                       ` <li>
-                            <p>${element.username}</p>
-                            <span>${element.email}</span>
-                        </li>`
-                    )
-                })}
-            </ul>
+        <ul>
+            ${infComapny[0].users.map((element)=>{
+                return(
+                   ` <li>
+                        <p>${element.username}</p>
+                        <span>${element.email}</span>
+                    </li>`
+                )
+            }).join('')}
+        </ul>
+        </section>
         `)
     }
 }
@@ -81,8 +95,6 @@ const logicHamburguer = ()=>{
           imgHamburguer.id=''
           container.id=''
       }  
-  
-  
   
     })
   }
