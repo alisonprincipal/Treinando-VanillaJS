@@ -296,5 +296,32 @@ export const requestDeleteDepartament=async(id)=>{
             console.log(error)
         }
         }
-    
+export const requestAllusersNotDepartament =async()=>{
+
+    const estrutura={
+        method:'GET',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }
+     const request = await fetch(`${baseUrl}admin/out_of_work`,estrutura)
+     const requestJson = await request.json()
+
+     return requestJson
+}
+export const requestAllusers =async()=>{
+
+    const estrutura={
+        method:'GET',
+        headers:{
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+        }
+    }
+     const request = await fetch(`${baseUrl}users`,estrutura)
+     const requestJson = await request.json()
+
+     return requestJson
+}
 

@@ -3,6 +3,7 @@ import { modalCreateDepartament } from "../../modals/modalCreateDepartament.js"
 import { modalEditDepartament } from "../../modals/modalEditDepartament.js"
 import { modalDeletDepartament } from "../../modals/modalDeleteDepartament.js"
 import { modalInfoDepartament } from "../../modals/modalInfoDepartament.js"
+
 const empresas = await allEmpresas()
 
 const allDepartaments = await requestDepartaments()
@@ -54,7 +55,7 @@ const templateSectionEmpresas =(data)=>{
       <p>${element.companies.name}</p>
       <div>
           <button class='btnInfo'>
-              <img  src="../../assets/olho.svg" alt=" imagem de um olho">
+              <img class='${element.name},${element.description},${element.companies.name}' id='${element.uuid}'  src="../../assets/olho.svg" alt=" imagem de um olho">
           </button>
 
           <button class='btnCaneta'>
@@ -71,8 +72,12 @@ const templateSectionEmpresas =(data)=>{
 
   const btnInfo = document.querySelectorAll('.btnInfo')
   btnInfo.forEach((btnElement=>{
-    btnElement.addEventListener('click',()=>{
-      modalInfoDepartament()
+    btnElement.addEventListener('click',(event)=>{
+      const nameAndDescriptionAndCompany  = event.target.className.split(',')
+    
+      const id = event.target.id
+     
+      modalInfoDepartament(nameAndDescriptionAndCompany,id) 
     })
 
   }))
