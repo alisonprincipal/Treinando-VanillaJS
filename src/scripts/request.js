@@ -401,3 +401,27 @@ export const requestUpdateUser=async(data,id)=>{
     }
 
 }
+export const requestDeleteUser=async(id)=>{
+    try{
+        const estrutura={
+            method:'DELETE',
+            headers:{
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            }
+        }
+         const request = await fetch(`${baseUrl}admin/delete_user/${id}`,estrutura)
+         if(request.ok){
+            sucessoAndErro('Usuário excluído com sucesso!',`Usuario removido do banco de dados :)`)
+            setTimeout(()=>{window.location.reload()},3000)
+        }else{
+            sucessoAndErro('Erro ao deletar usuario','Verifique os dados e tenten novamente ;)')
+        }
+        return request.ok
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
+

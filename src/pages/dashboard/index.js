@@ -4,6 +4,7 @@ import { modalEditDepartament } from "../../modals/modalEditDepartament.js"
 import { modalDeletDepartament } from "../../modals/modalDeleteDepartament.js"
 import { modalInfoDepartament } from "../../modals/modalInfoDepartament.js"
 import { modalUpdateUser } from "../../modals/modalUpdateUser.js"
+import { modalDeleteUser } from "../../modals/modalDeleteUser.js"
 
 const empresas = await allEmpresas()
 
@@ -124,11 +125,11 @@ const templateSectionUsers =()=>{
                   <p>${element.professional_level}</p>
                   <p>${modality}</p>
                   <div>
-                      <button class='btnEdit' id ='${element.uuid}'>
+                      <button class='btnEdit'>
                           <img  id ='${element.uuid}' src="../../assets/caneta.svg" alt="imagem de uma caneta">
                       </button>
-                      <button class='btnDelete' id =${element.uuid}>
-                          <img src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
+                      <button class='btnDelete'>
+                          <img id =${element.uuid} class='${element.username}' src="../../assets/lixeira.svg" alt="imagem de uma lixeira">
                       </button>
                   </div>
               </li> 
@@ -146,6 +147,15 @@ const templateSectionUsers =()=>{
       modalUpdateUser(id)
     })
   }))  
+
+  const btnDelete = document.querySelectorAll('.btnDelete')
+  btnDelete.forEach((btnElement=>{
+    btnElement.addEventListener('click',(event)=>{
+      const name = event.target.className
+      const id = event.target.id
+      modalDeleteUser(name,id)
+    })
+  }))
 }
 
 templateSectionUsers()
