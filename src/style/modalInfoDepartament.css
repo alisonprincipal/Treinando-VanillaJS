@@ -1,0 +1,203 @@
+.containerInfoDepartament{
+    width: 100%;
+    min-height: 100vh;
+
+    background: rgba(70, 35, 167, 0.13);
+
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+
+    z-index: 99;
+}
+.containerInfoDepartament>div{
+
+    width: 100%;
+    max-width: 800px;
+    min-height: 342px;
+
+    background-color: #FFFFFF;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    padding: 15px;
+
+
+    box-shadow: 2px 2px 2px 2px;
+    position: relative;
+}
+.containerInfoDepartament>div>div{
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 15px;
+}
+.containerInfoDepartament>div>button{
+
+    width: 25px;
+    height: 27px;
+
+    font-size: 25px;
+    font-weight: 100;
+
+    background-color: #FFFFFF;
+
+    position: absolute;
+    right: 8px;
+    top: 8px;
+   
+}
+.containerInfoDepartament>div>h3{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 54px;
+}
+.containerInfoDepartament>div>div>div{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.containerInfoDepartament>div>div>div>h5{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+   
+}
+.containerInfoDepartament>div>div>div>p{
+   
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+
+}
+.containerInfoDepartament>div>div>form{
+    width: 100%;
+    max-width: 422px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+    align-items: end;
+}
+.containerInfoDepartament>div>div>form>select{
+    width: 100%;
+    height: 52px;
+
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+
+    color: rgba(0, 0, 0, 0.5);
+
+}
+.containerInfoDepartament>div>div>form>button{
+    width: 157px;
+    height: 48px;
+
+    background: #4BA036;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+.containerInfoDepartament>div>ul{
+
+    width: 100%;
+    display: flex;
+
+    gap: 20px;
+    padding: 15px;
+    overflow-x: auto;
+    background: #F8F8F8;
+}
+.containerInfoDepartament>div>ul>li{
+
+    min-width: 306px;
+    height: 180px;
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 15px;
+
+    gap: 15px;
+
+    box-shadow: 1px 1px 1px 1px;
+
+    background: #FFFFFF;
+    border-bottom: 1px solid #4200FF;
+
+}
+.containerInfoDepartament>div>ul>li>div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+.containerInfoDepartament>div>ul>li>div>h5{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+.containerInfoDepartament>div>ul>li>div>p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+.containerInfoDepartament>div>ul>li>button{
+    width: 157px;
+    height: 48px;
+
+    border: 1px solid #CE4646;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+
+    color: #CE4646;
+}
+.containerInfoDepartament>div>ul>li>button:hover{
+    color: white;
+    background-color:  #CE4646;
+}
+.containerInfoDepartament>div>button:hover{
+
+    background-color: blue;
+    color: red;
+}
